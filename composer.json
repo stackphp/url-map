@@ -1,0 +1,15 @@
+{
+    "name": "chh/url-map",
+    "description": "URL Map HttpKernelInterface Middleware",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Christoph Hochstrasser",
+            "email": "christoph.hochstrasser@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/http-kernel": "~2.1"
+    }
+}
