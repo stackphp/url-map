@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UrlMap implements HttpKernelInterface
 {
+    const ATTR_PREFIX = "stack.url_map.prefix";
+
     protected $map = array();
     protected $app;
 
@@ -48,7 +50,7 @@ class UrlMap implements HttpKernelInterface
                 );
 
                 $attributes = $request->attributes->all();
-                $attributes['stack.url_map.prefix'] = $path;
+                $attributes[static::ATTR_PREFIX] = $path;
 
                 return $app->handle($request->duplicate(null, null, $attributes, null, null, $server), $type, $catch);
             }
