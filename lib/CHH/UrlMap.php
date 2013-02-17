@@ -5,14 +5,6 @@ namespace CHH;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class UrlMapRequest extends Request
-{
-    function setBaseUrl($baseUrl)
-    {
-        $this->baseUrl = $baseUrl;
-    }
-}
-
 /**
  * URL Map Middleware, which maps kernels to paths
  *
@@ -50,27 +42,13 @@ class UrlMap implements HttpKernelInterface
     function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
         foreach ($this->map as $path => $app) {
-            $path = str_replace('#', '\\#', $path);
-
-            if (preg_match("#{$path}#", rawurldecode($request->getPathInfo()), $matches)) {
-                $newRequest = UrlMapRequest::create(
-                    $request->getRequestUri(),
-                    $request->getMethod(),
-                    $request->query->all(),
-                    $request->cookies->all(),
-                    $request->files->all(),
-                    $request->server->all(),
-                    $request->getContent()
+            if (strpos(rawurldecode($request->getPathInfo()), $path) === 0) {
+                $server = array(
+                    'SCRIPT_NAME' => rtrim($path, '/') . '/' . $request->server->get('SCRIPT_NAME')
                 );
 
-                $newRequest->setBaseUrl($matches[0]);
-                $newRequest->attributes->add($request->attributes->all());
-
-                $newRequest->attributes->set('spark.url_map.path', rawurldecode($matches[0]));
-                $newRequest->attributes->set('spark.url_map.original_pathinfo', $request->getPathInfo());
-                $newRequest->attributes->set('spark.url_map.original_request_uri', $request->getRequestUri());
-
-                return $app->handle($newRequest, $type, $catch);
+                $subRequest = $request->duplicate(null, null, null, null, null, $server);
+                return $app->handle($subRequest, $type, $catch);
             }
         }
 

@@ -5,18 +5,19 @@ namespace CHH\Test;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use CHH\UrlMap;
+use Stack\CallableHttpKernel;
 
 class UrlMapTest extends \PHPUnit_Framework_TestCase
 {
     function test()
     {
-        $app = new CallableKernel(function(Request $req) {
+        $app = new CallableHttpKernel(function(Request $req) {
             return new Response("Fallback!");
         });
 
         $urlMap = new UrlMap($app);
         $urlMap->setMap(array(
-            '^/foo' => new CallableKernel(function(Request $req) {
+            '/foo' => new CallableHttpKernel(function(Request $req) {
                 return new Response('foo');
             })
         ));
@@ -31,18 +32,14 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
     {
         $test = $this;
 
-        $app = new CallableKernel(function(Request $req) {
+        $app = new CallableHttpKernel(function(Request $req) {
             return new Response("Fallback!");
         });
 
         $urlMap = new UrlMap($app);
         $urlMap->setMap(array(
-            '^/foo' => new CallableKernel(function(Request $req) use ($test) {
-                $test->assertEquals('/foo', $req->attributes->get('spark.url_map.original_pathinfo'));
-                $test->assertEquals('/foo?bar=baz', $req->attributes->get('spark.url_map.original_request_uri'));
+            '/foo' => new CallableHttpKernel(function(Request $req) use ($test) {
                 $test->assertEquals('/', $req->getPathinfo());
-
-                $test->assertEquals('/foo', $req->getBaseUrl());
 
                 return new Response("Hello World");
             })

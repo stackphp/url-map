@@ -9,7 +9,19 @@
             "email": "christoph.hochstrasser@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "CHH\\": "lib/"
+        }
+    },
     "require": {
-        "symfony/http-kernel": "~2.1"
+        "php": ">=5.4.0",
+        "symfony/http-kernel": "~2.1",
+        "symfony/http-foundation": "~2.1"
+    },
+    "require-dev": {
+        "stack/callable-http-kernel": "@dev",
+        "phpunit/phpunit": "~3.7",
+        "silex/silex": "1.0.*@dev"
     }
 }

@@ -1,0 +1,15 @@
+<phpunit bootstrap="./tests/bootstrap.php">
+    <php>
+    </php>
+    <testsuites>
+        <testsuite name="UrlMap Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">lib</directory>
+        </whitelist>
+    </filter>
+</phpunit>
+
