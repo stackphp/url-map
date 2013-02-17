@@ -44,11 +44,13 @@ class UrlMap implements HttpKernelInterface
         foreach ($this->map as $path => $app) {
             if (strpos(rawurldecode($request->getPathInfo()), $path) === 0) {
                 $server = array(
-                    'SCRIPT_NAME' => rtrim($path, '/') . '/' . $request->server->get('SCRIPT_NAME')
+                    'SCRIPT_NAME' => rtrim($path, '/') . '/' . $request->server->get('SCRIPT_NAME'),
                 );
 
-                $subRequest = $request->duplicate(null, null, null, null, null, $server);
-                return $app->handle($subRequest, $type, $catch);
+                $attributes = $request->attributes->all();
+                $attributes['stack.url_map.prefix'] = $path;
+
+                return $app->handle($request->duplicate(null, null, $attributes, null, null, $server), $type, $catch);
             }
         }
 

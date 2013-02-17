@@ -2,6 +2,7 @@
 
 use Silex\Application;
 use CHH\UrlMap;
+use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application;
 $app->get('/', function() {
@@ -9,9 +10,10 @@ $app->get('/', function() {
 });
 
 $sub = new Silex\Application;
-$sub->get('/', function() {
-    return "Hello World from Sub App!";
-});
+$sub->register(new Silex\Provider\UrlGeneratorServiceProvider);
+$sub->get('/', function(Request $req) use ($sub) {
+    return "Hello World from Sub App!" . $req->getBaseUrl();
+})->bind('root');
 
 $map = new UrlMap($app, array(
     '/foo' => $sub
