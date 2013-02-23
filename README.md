@@ -23,7 +23,7 @@ use Silex\Application;
 
 $app = new Application;
 $app->get('/', function() {
-    return "Main Application!";
+    return "Main application!";
 });
 
 $blog = new Application;
