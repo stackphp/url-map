@@ -16,14 +16,14 @@ class UrlMap implements HttpKernelInterface
 {
     const ATTR_PREFIX = "stack.url_map.prefix";
 
-    protected $map = array();
+    protected $map = [];
 
     /**
      * @var HttpKernelInterface
      */
     protected $app;
 
-    public function __construct(HttpKernelInterface $app, array $map = array())
+    public function __construct(HttpKernelInterface $app, array $map = [])
     {
         $this->app = $app;
 

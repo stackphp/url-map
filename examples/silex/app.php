@@ -5,20 +5,20 @@ use CHH\UrlMap;
 use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application;
-$app->get('/', function() {
+$app->get('/', function () {
     return "Hello World";
 });
 
 $sub = new Silex\Application;
 $sub->register(new Silex\Provider\UrlGeneratorServiceProvider);
-$sub->get('/', function(Request $req) use ($sub) {
+$sub->get('/', function (Request $req) use ($sub) {
     return "Hello World from Sub App!" . $req->getBaseUrl() . "\n"
         . $sub['url_generator']->generate('root');
 })->bind('root');
 
-$map = new UrlMap($app, array(
-    '/foo' => $sub
-));
+$map = new UrlMap($app, [
+    '/foo' => $sub,
+]);
 
 return $map;
 

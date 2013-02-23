@@ -22,19 +22,19 @@ implements HttpKernelInterface at the sub path `/blog`:
 use Silex\Application;
 
 $app = new Application;
-$app->get('/', function() {
+$app->get('/', function () {
     return "Main Application!";
 });
 
 $blog = new Application;
-$blog->get('/', function() {
+$blog->get('/', function () {
     return "This is the blog!";
 });
 
 $stack = (new Stack\Stack)
-    ->push('Stack\UrlMap', array(
-        '/blog' => $blog
-    ));
+    ->push('Stack\UrlMap', [
+        '/blog' => $blog,
+    ]);
 
 $app = $stack->resolve($app);
 ```
@@ -49,7 +49,7 @@ stripped from the path info.
 This also means that apps which use the Symfony Routing component for
 Routing and URL Generation don't need any adaptions.
 
-Apps using other means for routing should prepend the return value of the 
+Apps using other means for routing should prepend the return value of the
 request's `getBaseUrl()` method to generated URLs.
 
 [Stack]: http://github.com/stackphp/stack
