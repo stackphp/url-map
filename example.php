@@ -7,13 +7,13 @@ require 'vendor/autoload.php';
 
 $app = new Silex\Application();
 
-$app->get('/', function() {
+$app->get('/', function () {
     return "Main application!";
 });
 
 $blog = new Silex\Application();
 
-$blog->get('/', function() {
+$blog->get('/', function () {
     return "This is the blog!";
 });
 
