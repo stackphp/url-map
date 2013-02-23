@@ -1,8 +1,7 @@
 {
-    "name": "chh/url-map",
+    "name": "stack/url-map",
     "description": "HttpKernelInterface Middleware which maps sub paths to objects implementing HttpKernelInterface",
     "license": "MIT",
-    "type": "library",
     "authors": [
         {
             "name": "Christoph Hochstrasser",
