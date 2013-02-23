@@ -17,6 +17,10 @@ class UrlMap implements HttpKernelInterface
     const ATTR_PREFIX = "stack.url_map.prefix";
 
     protected $map = array();
+
+    /**
+     * @var HttpKernelInterface
+     */
     protected $app;
 
     public function __construct(HttpKernelInterface $app, array $map = array())
@@ -28,6 +32,11 @@ class UrlMap implements HttpKernelInterface
         }
     }
 
+    /**
+     * Sets a map of prefixes to objects implementing HttpKernelInterface
+     *
+     * @param array $map
+     */
     public function setMap(array $map)
     {
         # Collect an array of all key lengths
