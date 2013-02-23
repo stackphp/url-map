@@ -41,6 +41,7 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
             '/foo' => new CallableHttpKernel(function(Request $req) use ($test) {
                 $test->assertEquals('/', $req->getPathinfo());
                 $test->assertEquals('/foo', $req->attributes->get(UrlMap::ATTR_PREFIX));
+                $test->assertEquals('/foo', $req->getBaseUrl());
 
                 return new Response("Hello World");
             })
