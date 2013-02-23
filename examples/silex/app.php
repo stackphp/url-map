@@ -12,7 +12,8 @@ $app->get('/', function() {
 $sub = new Silex\Application;
 $sub->register(new Silex\Provider\UrlGeneratorServiceProvider);
 $sub->get('/', function(Request $req) use ($sub) {
-    return "Hello World from Sub App!" . $req->getBaseUrl();
+    return "Hello World from Sub App!" . $req->getBaseUrl() . "\n"
+        . $sub['url_generator']->generate('root');
 })->bind('root');
 
 $map = new UrlMap($app, array(

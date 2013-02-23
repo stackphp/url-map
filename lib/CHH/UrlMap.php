@@ -45,9 +45,8 @@ class UrlMap implements HttpKernelInterface
     {
         foreach ($this->map as $path => $app) {
             if (strpos(rawurldecode($request->getPathInfo()), $path) === 0) {
-                $server = array(
-                    'SCRIPT_NAME' => rtrim($path, '/') . '/' . $request->server->get('SCRIPT_NAME'),
-                );
+                $server = $request->server->all();
+                $server['SCRIPT_FILENAME'] = $server['SCRIPT_NAME'] = $server['PHP_SELF'] = $path;
 
                 $attributes = $request->attributes->all();
                 $attributes[static::ATTR_PREFIX] = $path;
