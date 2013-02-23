@@ -32,7 +32,7 @@ $blog->get('/', function() {
 });
 
 $stack = (new Stack\Stack)
-    ->push('CHH\UrlMap', array(
+    ->push('Stack\UrlMap', array(
         '/blog' => $blog
     ));
 

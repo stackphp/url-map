@@ -1,6 +1,6 @@
 <?php
 
-namespace CHH;
+namespace Stack;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;

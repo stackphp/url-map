@@ -4,7 +4,7 @@ namespace CHH\Test;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use CHH\UrlMap;
+use Stack\UrlMap;
 use Stack\CallableHttpKernel;
 
 /**
