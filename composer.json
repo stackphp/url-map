@@ -1,6 +1,6 @@
 {
     "name": "stack/url-map",
-    "description": "HttpKernelInterface Middleware which maps sub paths to objects implementing HttpKernelInterface",
+    "description": "URL Map middleware.",
     "license": "MIT",
     "authors": [
         {
