@@ -14,43 +14,43 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $app = new CallableHttpKernel(function (Request $req) {
+        $app = new CallableHttpKernel(function (Request $request) {
             return new Response("Fallback!");
         });
 
         $urlMap = new UrlMap($app);
         $urlMap->setMap([
-            '/foo' => new CallableHttpKernel(function (Request $req) {
+            '/foo' => new CallableHttpKernel(function (Request $request) {
                 return new Response('foo');
             }),
         ]);
 
-        $req = Request::create('/foo');
-        $resp = $urlMap->handle($req);
+        $request = Request::create('/foo');
+        $response = $urlMap->handle($request);
 
-        $this->assertEquals('foo', $resp->getContent());
+        $this->assertEquals('foo', $response->getContent());
     }
 
     public function testOverridesPathInfo()
     {
-        $app = new CallableHttpKernel(function (Request $req) {
+        $app = new CallableHttpKernel(function (Request $request) {
             return new Response("Fallback!");
         });
 
         $urlMap = new UrlMap($app);
         $urlMap->setMap([
-            '/foo' => new CallableHttpKernel(function (Request $req) {
-                $this->assertEquals('/', $req->getPathinfo());
-                $this->assertEquals('/foo', $req->attributes->get(UrlMap::ATTR_PREFIX));
-                $this->assertEquals('/foo', $req->getBaseUrl());
+            '/foo' => new CallableHttpKernel(function (Request $request) {
+                $this->assertEquals('/', $request->getPathinfo());
+                $this->assertEquals('/foo', $request->attributes->get(UrlMap::ATTR_PREFIX));
+                $this->assertEquals('/foo', $request->getBaseUrl());
 
                 return new Response("Hello World");
             }),
         ]);
 
-        $resp = $urlMap->handle(Request::create('/foo?bar=baz'));
+        $response = $urlMap->handle(Request::create('/foo?bar=baz'));
 
-        $this->assertEquals('Hello World', $resp->getContent());
+        $this->assertEquals('Hello World', $response->getContent());
     }
 }
 

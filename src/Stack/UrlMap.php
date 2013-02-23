@@ -53,14 +53,17 @@ class UrlMap implements HttpKernelInterface
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
         foreach ($this->map as $path => $app) {
-            if (strpos(rawurldecode($request->getPathInfo()), $path) === 0) {
+            $pathInfo = rawurldecode($request->getPathInfo());
+            if (0 === strpos($pathInfo, $path)) {
                 $server = $request->server->all();
                 $server['SCRIPT_FILENAME'] = $server['SCRIPT_NAME'] = $server['PHP_SELF'] = $path;
 
                 $attributes = $request->attributes->all();
                 $attributes[static::ATTR_PREFIX] = $path;
 
-                return $app->handle($request->duplicate(null, null, $attributes, null, null, $server), $type, $catch);
+                $newRequest = $request->duplicate(null, null, $attributes, null, null, $server);
+
+                return $app->handle($newRequest, $type, $catch);
             }
         }
 
