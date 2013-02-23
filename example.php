@@ -18,7 +18,7 @@ $blog->get('/', function() {
 });
 
 $stack = (new Stack\Stack)
-    ->push('Stack\UrlMap', array('/blog' => $blog));
+    ->push('Stack\UrlMap', ['/blog' => $blog]);
 
 $app = $stack->resolve($app);
 
