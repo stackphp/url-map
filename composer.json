@@ -1,6 +1,6 @@
 {
     "name": "chh/url-map",
-    "description": "URL Map HttpKernelInterface Middleware",
+    "description": "HttpKernelInterface Middleware which maps sub paths to objects implementing HttpKernelInterface",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -20,8 +20,8 @@
         "symfony/http-foundation": "~2.1"
     },
     "require-dev": {
-        "stack/callable-http-kernel": "@dev",
+        "stack/callable-http-kernel": "~1.0@dev",
         "phpunit/phpunit": "~3.7",
-        "silex/silex": "1.0.*@dev"
+        "silex/silex": "~1.0@dev"
     }
 }
