@@ -50,6 +50,8 @@ This also means that apps which use the Symfony Routing component for
 Routing and URL Generation don't need any adaptions.
 
 Apps using other means for routing should prepend the return value of the
-request's `getBaseUrl()` method to generated URLs.
+request's `getBaseUrl()` method to generated URLs. The URL Map also sets a
+`stack.url_map.prefix` request attribute, which can be used if you don't want
+to rely on the request base URL.
 
 [Stack]: http://github.com/stackphp/stack
