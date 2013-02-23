@@ -7,9 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use CHH\UrlMap;
 use Stack\CallableHttpKernel;
 
+/**
+ * @author Christoph Hochstrasser <christoph.hochstrasser@gmail.com>
+ */
 class UrlMapTest extends \PHPUnit_Framework_TestCase
 {
-    function test()
+    public function test()
     {
         $app = new CallableHttpKernel(function(Request $req) {
             return new Response("Fallback!");
@@ -28,7 +31,7 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', $resp->getContent());
     }
 
-    function testOverridesPathInfo()
+    public function testOverridesPathInfo()
     {
         $test = $this;
 

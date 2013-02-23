@@ -19,7 +19,7 @@ class UrlMap implements HttpKernelInterface
     protected $map = array();
     protected $app;
 
-    function __construct(HttpKernelInterface $app, array $map = array())
+    public function __construct(HttpKernelInterface $app, array $map = array())
     {
         $this->app = $app;
 
@@ -28,7 +28,7 @@ class UrlMap implements HttpKernelInterface
         }
     }
 
-    function setMap(array $map)
+    public function setMap(array $map)
     {
         # Collect an array of all key lengths
         $lengths = array_map('strlen', array_keys($map));
@@ -41,7 +41,7 @@ class UrlMap implements HttpKernelInterface
         $this->map = $map;
     }
 
-    function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
+    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
         foreach ($this->map as $path => $app) {
             if (strpos(rawurldecode($request->getPathInfo()), $path) === 0) {
@@ -58,4 +58,3 @@ class UrlMap implements HttpKernelInterface
         return $this->app->handle($request, $type, $catch);
     }
 }
-
