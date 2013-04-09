@@ -22,7 +22,7 @@
         "stack/callable-http-kernel": "~1.0@dev",
         "phpunit/phpunit": "~3.7",
         "silex/silex": "~1.0@dev",
-        "stack/stack": "~1.0@dev"
+        "stack/builder": "~1.0@dev"
     },
     "extra": {
         "branch-alias": { "dev-master": "1.0-dev" }
