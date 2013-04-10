@@ -1,8 +1,8 @@
 # URL Map Stack Middleware
 
 The `UrlMap` class takes an array mapping paths to apps and dispatches
-accordingly. This class is insertable into a Middleware Stack, like
-[stack/stack](http://github.com/stackphp/stack).
+accordingly. This class is insertable into a Middleware Stack Builder, like
+[stack/builder](http://github.com/stackphp/builder).
 
 ## Install
 
