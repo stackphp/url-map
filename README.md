@@ -22,12 +22,12 @@ implements HttpKernelInterface at the sub path `/blog`:
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
 
-$app = new Application;
+$app = new Application();
 $app->get('/', function () {
     return "Main Application!";
 });
 
-$blog = new Application;
+$blog = new Application();
 $blog->get('/', function () {
     return "This is the blog!";
 });
@@ -36,7 +36,7 @@ $map = [
     "/blog" => $blog
 ];
 
-$app = (new Stack\Builder)
+$app = (new Stack\Builder())
         ->push('Stack\UrlMap', $map)
         ->resolve($app);
 
