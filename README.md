@@ -19,6 +19,7 @@ implements HttpKernelInterface at the sub path `/blog`:
 ```php
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
 
 $app = new Application;
@@ -31,12 +32,20 @@ $blog->get('/', function () {
     return "This is the blog!";
 });
 
-$stack = (new Stack\Builder)
-    ->push('Stack\UrlMap', [
-        '/blog' => $blog,
-    ]);
+$map = [
+    "/blog" => $blog
+];
 
-$app = $stack->resolve($app);
+$app = (new Stack\Builder)
+        ->push('Stack\UrlMap', $map)
+        ->resolve($app);
+
+$request = Request::createFromGlobals();
+
+$response = $app->handle($request);
+$response->send();
+
+$app->terminate($request, $response);
 ```
 
 If you now navigate to `/blog` you should see `This is the blog!` in your
