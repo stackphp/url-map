@@ -52,8 +52,8 @@ class UrlMap implements HttpKernelInterface
 
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
+        $pathInfo = rawurldecode($request->getPathInfo());
         foreach ($this->map as $path => $app) {
-            $pathInfo = rawurldecode($request->getPathInfo());
             if (0 === strpos($pathInfo, $path)) {
                 $server = $request->server->all();
                 $server['SCRIPT_FILENAME'] = $server['SCRIPT_NAME'] = $server['PHP_SELF'] = $path;
