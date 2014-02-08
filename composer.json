@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.3.3",
         "symfony/http-kernel": "~2.1",
         "symfony/http-foundation": "~2.1"
     },
@@ -25,6 +25,8 @@
         "stack/builder": "~1.0@dev"
     },
     "extra": {
-        "branch-alias": { "dev-master": "1.0-dev" }
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
