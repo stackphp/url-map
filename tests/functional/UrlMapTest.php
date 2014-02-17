@@ -1,6 +1,6 @@
 <?php
 
-namespace Stack\Test;
+namespace functional;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
