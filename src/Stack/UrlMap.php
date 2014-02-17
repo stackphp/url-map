@@ -56,10 +56,10 @@ class UrlMap implements HttpKernelInterface
         foreach ($this->map as $path => $app) {
             if (0 === strpos($pathInfo, $path)) {
                 $server = $request->server->all();
-                $server['SCRIPT_FILENAME'] = $server['SCRIPT_NAME'] = $server['PHP_SELF'] = $path;
+                $server['SCRIPT_FILENAME'] = $server['SCRIPT_NAME'] = $server['PHP_SELF'] = $request->getBaseUrl().$path;
 
                 $attributes = $request->attributes->all();
-                $attributes[static::ATTR_PREFIX] = $path;
+                $attributes[static::ATTR_PREFIX] = $request->getBaseUrl().$path;
 
                 $newRequest = $request->duplicate(null, null, $attributes, null, null, $server);
 
