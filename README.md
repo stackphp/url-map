@@ -1,5 +1,7 @@
 # URL Map Stack Middleware
 
+[![Build Status](https://travis-ci.org/stackphp/url-map.png)](https://travis-ci.org/stackphp/url-map)
+
 The `UrlMap` class takes an array mapping paths to apps and dispatches
 accordingly. This class is insertable into a Middleware Stack Builder, like
 [stack/builder](http://github.com/stackphp/builder).
