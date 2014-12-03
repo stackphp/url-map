@@ -27,6 +27,7 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
 
         $request = Request::create('/foo');
         $response = $urlMap->handle($request);
+        $urlMap->terminate($request, $response);
 
         $this->assertEquals('foo', $response->getContent());
     }
@@ -51,7 +52,9 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
             }),
         ));
 
-        $response = $urlMap->handle(Request::create('/foo?bar=baz'));
+        $response = $urlMap->handle($request = Request::create('/foo?bar=baz'));
+        $urlMap->terminate($request, $response);
+
         $this->assertEquals('Hello World', $response->getContent());
     }
 
@@ -80,7 +83,9 @@ class UrlMapTest extends \PHPUnit_Framework_TestCase
             '/foo' => $urlMapInner
         ));
 
-        $response = $urlMapOuter->handle(Request::create('/foo/bar?baz=fiz'));
+        $response = $urlMapOuter->handle($request = Request::create('/foo/bar?baz=fiz'));
+        $urlMapOuter->terminate($request, $response);
+
         $this->assertEquals('Hello World', $response->getContent());
     }
 }
