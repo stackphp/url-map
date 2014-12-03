@@ -76,12 +76,8 @@ class UrlMap implements HttpKernelInterface, TerminableInterface
     {
         $pathInfo = rawurldecode($request->getPathInfo());
         foreach ($this->map as $path => $app) {
-            if (0 === strpos($pathInfo, $path)) {
-                if ($app instanceof TerminableInterface) {
-                    $app->terminate($request, $response);
-                }
-
-                break;
+            if ($app instanceof TerminableInterface) {
+                $app->terminate($request, $response);
             }
         }
     }
