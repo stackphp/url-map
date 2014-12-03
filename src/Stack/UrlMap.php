@@ -80,5 +80,9 @@ class UrlMap implements HttpKernelInterface, TerminableInterface
                 $app->terminate($request, $response);
             }
         }
+
+        if ($this->app instanceof TerminableInterface) {
+            $this->app->terminate($request, $response);
+        }
     }
 }
