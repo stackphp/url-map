@@ -17,7 +17,7 @@ $ php composer.phar require chh/url-map:~1.0@dev
 
 ## Example
 
-Let's say we have a Silex app and want to map an blogging app which
+Let's say we have a Silex app and want to map a blogging app which
 implements HttpKernelInterface at the sub path `/blog`:
 
 ```php
