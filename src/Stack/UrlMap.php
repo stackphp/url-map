@@ -2,8 +2,10 @@
 
 namespace Stack;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\TerminableInterface;
 
 /**
  * URL Map Middleware, which maps kernels to paths
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @author Christoph Hochstrasser <christoph.hochstrasser@gmail.com>
  */
-class UrlMap implements HttpKernelInterface
+class UrlMap implements HttpKernelInterface, TerminableInterface
 {
     const ATTR_PREFIX = "stack.url_map.prefix";
 
@@ -68,5 +70,18 @@ class UrlMap implements HttpKernelInterface
         }
 
         return $this->app->handle($request, $type, $catch);
+    }
+
+    public function terminate(Request $request, Response $response)
+    {
+        foreach ($this->map as $path => $app) {
+            if ($app instanceof TerminableInterface) {
+                $app->terminate($request, $response);
+            }
+        }
+
+        if ($this->app instanceof TerminableInterface) {
+            $this->app->terminate($request, $response);
+        }
     }
 }
