@@ -10,12 +10,14 @@ accordingly. This class is insertable into a Middleware Stack Builder, like
 
 Install with Composer:
 
-    % curl -sS https://getcomposer.org/installer | php
-    % php composer.phar require chh/url-map:~1.0@dev
+```bash
+$ curl -sS https://getcomposer.org/installer | php
+$ php composer.phar require chh/url-map:~1.0@dev
+```
 
 ## Example
 
-Let's say we have a Silex app and want to map an blogging app which
+Let's say we have a Silex app and want to map a blogging app which
 implements HttpKernelInterface at the sub path `/blog`:
 
 ```php
@@ -39,8 +41,8 @@ $map = [
 ];
 
 $app = (new Stack\Builder())
-        ->push('Stack\UrlMap', $map)
-        ->resolve($app);
+    ->push('Stack\UrlMap', $map)
+    ->resolve($app);
 
 $request = Request::createFromGlobals();
 
