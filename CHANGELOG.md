@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+* 1.1.0 (2015-04-16)
+
+  * #15: Use TerminableInterface
+
 * 1.0.1 (2014-02-12)
 
   * Backport to PHP 5.3 (@henrikbjorn).
