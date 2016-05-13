@@ -11,8 +11,7 @@ accordingly. This class is insertable into a Middleware Stack Builder, like
 Install with Composer:
 
 ```bash
-$ curl -sS https://getcomposer.org/installer | php
-$ php composer.phar require chh/url-map:~1.0@dev
+$ composer require stack/url-map
 ```
 
 ## Example
