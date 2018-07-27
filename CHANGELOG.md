@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+* Next
+  * Removed unsupported PHP versions ( 5.x series).
+  * Added support for Symfony 4.x .
+
 * 1.1.0 (2015-04-16)
 
   * #15: Use TerminableInterface
