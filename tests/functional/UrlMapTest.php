@@ -6,11 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Stack\UrlMap;
 use Stack\CallableHttpKernel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Christoph Hochstrasser <christoph.hochstrasser@gmail.com>
  */
-class UrlMapTest extends \PHPUnit_Framework_TestCase
+class UrlMapTest extends TestCase
 {
     public function test()
     {
