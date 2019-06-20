@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by harikt at 2019-06-10T07:41:30Z
+
+The build failure is for 5.3, 5.4, 5.5 ( for dependency on silex raised to 2.x , silex itself is not maintained any more) . Is this still supporting those php versions ?
+
+![Screenshot from 2019-06-10 13-08-48](https://user-images.githubusercontent.com/120454/59179871-fa203400-8b80-11e9-9618-7a6994fc5f35.png)
+
+---------------------------------------------------------------------------
+
+by peter279k at 2019-06-20T02:19:03Z
+
+I think it's fine to drop `php-5.3`, `php-5.4` and `php-5.5` because they've been unsupported for about whiles.
+
+---------------------------------------------------------------------------
+
+by harikt at 2019-06-20T05:05:41Z
+
+Hey @simensen ,
+
+Is there a way we can proceed here ?
+
+---------------------------------------------------------------------------
+
+by fabpot at 2019-06-20T05:56:59Z
+
+Let's drop unsupported PHP versions
+
+---------------------------------------------------------------------------
+
+by harikt at 2019-06-20T07:41:31Z
+
+Finally resolved things.
